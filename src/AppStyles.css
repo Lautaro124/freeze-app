@@ -1,0 +1,81 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 320px;
+}
+h2 {
+  color: #333;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 10px 0;
+  text-wrap: balance;
+}
+
+span {
+  color: #FF5722;
+  font-weight: bold;
+  margin-top: 10px;
+  text-wrap: balance;
+}
+
+.loading {
+  font-size: 1.5em;
+  color: #777;
+}
+
+.gauge-container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.gauge {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.gauge-content {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background-color: azure;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 3px 3px 20px rgba(0, 0, 0, 0.6);
+}
+
+circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 28px;
+
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
