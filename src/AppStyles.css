@@ -61,8 +61,11 @@ span {
   height: 230px;
   border-radius: 50%;
   background-color: azure;
+  padding-top: 30px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
   justify-content: center;
   box-shadow: inset 3px 3px 20px rgba(0, 0, 0, 0.6);
 }
@@ -78,4 +81,49 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+h1
+{
+  margin: 0;
+}
+
+.statusTag {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: small;
+}
+
+.connected {
+  margin-top: 0px;
+  text-align: center;
+  background-color: rgb(198,246,213);
+  color: rgb(82,160,119);
+}
+
+.dotConnected {
+  background-color: rgb(82,160,119);
+}
+
+.dotdisconnected{
+  background-color: rgb(228,138,138);
+}
+
+.disconnected {
+  margin-top: 0px;
+  text-align: center;
+  background-color: rgb(254,215,215);
+  color: rgb(228,138,138);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  margin-bottom: 1.5px;
+  border-radius: 50%;
 }

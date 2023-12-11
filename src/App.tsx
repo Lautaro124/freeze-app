@@ -5,6 +5,7 @@ import service from './service/service';
 
 function App() {
   const [temperature, setTemperature] = useState<number | null>(null);
+  const [statusConnection, setStatus] = useState<boolean | null>(null);
   const [errors, setErrors] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -12,12 +13,20 @@ function App() {
     const fetchData = async () => {
       try {
         setLoading(temperature === null);
-        const responseData = await service();
-        setTemperature(responseData.data);
-        if (responseData.data >= 5) {
+        const temperatureResponse = await service<{
+          data: number
+        }>('/freeze');
+        const lastConection = await service<{
+          lastConnection: Date,
+          status: boolean
+        }>('/espStatus');
+
+        setStatus(lastConection.status);
+        setTemperature(temperatureResponse.data);
+        if (temperatureResponse.data >= 5) {
           setErrors('La temperatura se encuentra alta.');
         }
-        if (responseData.data >= 10) {
+        if (temperatureResponse.data >= 10) {
           setErrors('La temperatura se encuentra muy alta.');
         }
         setErrors('');
@@ -29,7 +38,7 @@ function App() {
     };
     fetchData();
 
-    const intervalId = setInterval(fetchData, 500);
+    const intervalId = setInterval(fetchData, 1500);
     return () => clearInterval(intervalId);
   }, [temperature]);
 
@@ -52,6 +61,12 @@ function App() {
               }}>
                 {temperature !== null ? `${temperature}°C` : 'N/A'}
               </h1>
+              <div className={`statusTag ${statusConnection ? 'connected' : 'disconnected'}`}>
+                <div className={`dot  ${statusConnection ? 'dotConnected' : 'dotdisconnected'}`}></div>
+                <span className={`${statusConnection ? 'connected' : 'disconnected'}`}>
+                  {statusConnection ? 'Conectado' : 'Desconectado'}
+                </span>
+              </div>
             </div>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="290px" height="290px">
